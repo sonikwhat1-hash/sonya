@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
+using namespace std;
+
+// Функция, вызывающая исключение out_of_range
+void accessInvalidMemory() {
+    vector<int> arr(5); // Вектор из 5 элементов (индексы 0-4)
+    cout << "Попытка доступа к элементу с индексом 10..." << endl;
+    cout << arr.at(10) << endl; // Попытка доступа к несуществующему элементу
+}
+
+// Рекурсивная функция
+void rec(int n) {
+    if (n > 10) {
+        return;
+    }
+    cout << n << " ";
+    rec(n + 1); // Рекурсивный вызов
+}
+
+int main() {
+    setlocale(0, "");
+    // Демонстрация цикла (для Задания 1)
+    cout << "Вывод чисел от 1 до 10 с помощью цикла:" << endl;
+    for (int i = 1; i <= 10; i++) {
+        cout << i << " ";
+    }
+    cout << endl << endl;
+
+    // Демонстрация обработки исключения (для Задания 2)
+    try {
+        accessInvalidMemory();
+    }
+    catch (const out_of_range& e) {
+        cout << "Поймано исключение out_of_range: " << e.what() << endl;
+    }
+
+    // Демонстрация рекурсии
+    cout << endl << "Вывод чисел от 1 до 10 с помощью рекурсии:" << endl;
+    rec(1);
+    cout << endl;
+
+    return 0;
+}
