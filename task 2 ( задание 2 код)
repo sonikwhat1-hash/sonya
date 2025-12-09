@@ -1,0 +1,35 @@
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
+using namespace std;
+
+// Функция, вызывающая исключение out_of_range
+void accessInvalidMemory() {
+    vector<int> arr(5); // Вектор из 5 элементов (индексы 0-4)
+    cout << arr.at(10) << endl; // Попытка доступа к несуществующему элементу
+}
+
+// Рекурсивная функция
+int rec(int n) {
+    if (n > 10) {
+        return 0;
+    }
+    cout << n << " "; // Вывод текущего значения
+    return rec(n + 1); // Рекурсивный вызов
+}
+
+int main() {
+    setlocale(0, "");
+    try {
+        accessInvalidMemory();
+    }
+    catch (const out_of_range& e) {
+        cout << "Поймано исключение: " << e.what() << endl;
+    }
+
+    rec(1);
+    cout << endl;
+
+    return 0;
+}
