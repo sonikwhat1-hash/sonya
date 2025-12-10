@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+/// <summary>
+/// Главная функция программы
+/// </summary>
+/// <remarks>
+/// Программа вычисляет значение L в зависимости от переменной d.
+/// Если d > 0 — вычисляется произведение ряда,
+/// иначе — вычисляется сумма ряда.
+/// </remarks>
+/// <returns>Возвращает 0 при успешном выполнении</returns>
+int main()
+{
+    setlocale(0, "");
+
+    double a, b, c, d, L;
+
+    cout << "В зависимости от числа d вычислить сумму или произведение для L" << endl;
+
+    cout << "Введите a: ";
+    cin >> a;
+
+    cout << "Введите d: ";
+    cin >> d;
+
+    if (d > 0)
+    {
+        cout << "d > 0, вычисляем произведение:" << endl;
+        L = 1;
+
+        for (int c = 2; c <= 9; c++)
+        {
+            L = L * (pow(c, 3) + tan(d));
+        }
+    }
+    else
+    {
+        cout << "d <= 0, вычисляем сумму:" << endl;
+        L = 0;
+
+        for (int b = 3; b <= 13; b += 2)
+        {
+            L += (b - a * b);
+        }
+    }
+
+    cout << "Результат L = " << L << endl;
+
+    system("pause");
+    return 0;
+}
