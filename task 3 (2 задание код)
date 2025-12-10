@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+/// <summary>
+/// Главная функция программы
+/// </summary>
+/// <returns>Возвращает 0 при успешном выполнении программы</returns>
+int main()
+{
+    setlocale(0, "");
+
+    double a, d, L;
+
+    cout << "В зависимости от числа d вычислить сумму или произведение для L." << endl;
+
+    cout << "Введите a: ";
+    cin >> a;
+
+    cout << "Введите d: ";
+    cin >> d;
+
+    if (d > 0)
+    {
+        cout << "d > 0, произведение:" << endl;
+        L = 1;
+
+        for (int c = 2; c <= 9; c++)
+        {
+            L *= (pow(c, 3) + tan(d));
+        }
+    }
+    else
+    {
+        cout << "d <= 0, сумма:" << endl;
+        L = 0;
+
+        for (int b = 3; b <= 13; b += 2)
+        {
+            L += (b - a * b);
+        }
+    }
+
+    cout << "L = " << L << endl;
+
+    system("pause");
+    return 0;
+}
