@@ -1,0 +1,116 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+    setlocale(0, "ru");
+
+    string animal = "";
+    string color = "";
+
+    // Загрузка сохраненных данных
+    ifstream file("settings.txt");
+    if (file.is_open()) {
+        getline(file, animal);
+        getline(file, color);
+        file.close();
+
+        if (!animal.empty()) {
+            cout << "Ваше любимое животное: " << animal << endl;
+        }
+
+        if (!color.empty()) {
+            cout << "Сохраненный цвет текста: " << color << endl;
+            string cmd = "color 0" + color;
+            system(cmd.c_str());
+        }
+    }
+
+    int choice;
+    do {
+        cout << "\n=== Меню ===" << endl;
+        cout << "1. Выбрать/изменить животное" << endl;
+        cout << "2. Выбрать/изменить цвет текста" << endl;
+        cout << "3. Показать текущие настройки" << endl;
+        cout << "4. Выйти" << endl;
+        cout << "Выберите действие: ";
+        cin >> choice;
+        cin.ignore();
+
+        if (choice == 1) {
+            cout << "Введите ваше любимое животное: ";
+            getline(cin, animal);
+
+            ofstream out("settings.txt");
+            if (out.is_open()) {
+                out << animal << endl;
+                if (!color.empty()) {
+                    out << color << endl;
+                }
+                out.close();
+                cout << "Животное сохранено!" << endl;
+            }
+        }
+        else if (choice == 2) {
+            cout << "Выберите цвет текста:" << endl;
+            cout << "0 - Черный" << endl;
+            cout << "1 - Синий" << endl;
+            cout << "2 - Зеленый" << endl;
+            cout << "3 - Голубой" << endl;
+            cout << "4 - Красный" << endl;
+            cout << "5 - Фиолетовый" << endl;
+            cout << "6 - Желтый" << endl;
+            cout << "7 - Белый" << endl;
+            cout << "Ваш выбор (0-7): ";
+
+            cin >> color;
+
+            if (color >= "0" && color <= "7") {
+                ofstream out("settings.txt");
+                if (out.is_open()) {
+                    if (!animal.empty()) {
+                        out << animal << endl;
+                    }
+                    out << color << endl;
+                    out.close();
+
+                    string cmd = "color 0" + color;
+                    system(cmd.c_str());
+                    cout << "Цвет изменен!" << endl;
+                }
+            }
+            else {
+                cout << "Неверный цвет!" << endl;
+            }
+        }
+        else if (choice == 3) {
+            if (!animal.empty()) {
+                cout << "Текущее животное: " << animal << endl;
+            }
+            else {
+                cout << "Животное еще не выбрано" << endl;
+            }
+
+            if (!color.empty()) {
+                cout << "Текущий цвет текста: " << color << endl;
+                string cmd = "color 0" + color;
+                system(cmd.c_str());
+            }
+            else {
+                cout << "Цвет еще не выбран" << endl;
+            }
+        }
+        else if (choice == 4) {
+            cout << "Выход из программы..." << endl;
+        }
+        else {
+            cout << "Неверный выбор!" << endl;
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
