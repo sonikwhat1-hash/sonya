@@ -1,0 +1,22 @@
+#include <iostream>
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    double radius, perimeter, area;
+    const double pi = 3.14159; // Константа π
+
+    cout << "Введите радиус круга: ";
+    cin >> radius;
+
+    // Вычисляем периметр (длину окружности) и площадь
+    perimeter = 2 * pi * radius;
+    area = pi * radius * radius;
+
+    cout << "==========================" << endl;
+    cout << "Длина окружности: " << perimeter << endl;
+    cout << "Площадь круга: " << area << endl;
+
+    return 0;
+}
