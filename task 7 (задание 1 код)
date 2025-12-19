@@ -1,0 +1,27 @@
+#include <stdexcept>
+#include <iostream>
+using namespace std;
+
+struct Proportion {
+    static double solveProportion(double a, double b, double c) {
+        if (a == 0) {
+            throw invalid_argument("а не может быть 0, деление на ноль невозможно");
+        }
+        return c * b / a;
+    }
+
+    static double percentageProportion(double value, double percent) {
+        return value * (percent / 100.0);
+    }
+
+    static double scaleFactor(double oldSize, double newSize) {
+        if (oldSize == 0) {
+            throw invalid_argument("oldSize не может быть 0, деление на ноль невозможно");
+        }
+        return newSize / oldSize;
+    }
+
+    static double applyScale(double value, double scale) {
+        return value * scale;
+    }
+};
