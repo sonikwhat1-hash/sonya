@@ -1,0 +1,22 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "UniformAccelerationMotion.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTest2
+{
+    TEST_CLASS(UnitTest2)
+    {
+    public:
+        TEST_METHOD(Test_FinalVelocity_Positive)
+        {
+            double initialVelocity = 0.0;
+            double acceleration = 9.8;
+            double time = 10.0;
+            double expected = 98.0;
+            double actual = UniformAccelerationMotion::finalVelocity(initialVelocity, acceleration, time);
+            Assert::AreEqual(expected, actual, 1e-6, L"finalVelocity calculation is incorrect");
+        }
+    };
+}
