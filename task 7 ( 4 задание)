@@ -1,0 +1,37 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../ConsoleApplication1/Proportion.h"  // Используем заголовочный файл
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTest1
+{
+    void TEST_CLASS(UnitTest1)
+    {
+    public:
+
+     TEST_METHOD(Test_SolveProportion_Positive)
+        {
+            double result = Proportion::solveProportion(4, 8, 2);
+            Assert::AreEqual(4.0, result, 1e-9);
+        }
+
+        TEST_METHOD(Test_PercentageProportion_Positive)
+        {
+            double result = Proportion::percentageProportion(200, 50);
+            Assert::AreEqual(100.0, result, 1e-9);
+        }
+
+        TEST_METHOD(Test_SolveProportion_Negative)
+        {
+            auto func = [] { Proportion::solveProportion(0, 5, 3); };
+            Assert::ExpectException<std::invalid_argument>(func);
+        }
+
+        TEST_METHOD(Test_ScaleFactor_Negative)
+        {
+            auto func = [] { Proportion::scaleFactor(0, 100); };
+            Assert::ExpectException<std::invalid_argument>(func);
+        };
+    };
+}
